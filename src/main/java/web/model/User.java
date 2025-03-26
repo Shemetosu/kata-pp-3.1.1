@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
@@ -16,9 +17,11 @@ public class User {
     private int id;
 
     @Column(name = "name")
+    @NotBlank(message = "Имя не должно быть пустым")
     private String name;
 
     @Column(name = "surname")
+    @NotBlank(message = "Фамилия не должна быть пустой")
     private String surname;
 
     public User(int id, String name, String surname) {
