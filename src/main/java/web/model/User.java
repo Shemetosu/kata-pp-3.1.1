@@ -14,6 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "name")
@@ -24,8 +25,7 @@ public class User {
     @NotBlank(message = "Фамилия не должна быть пустой")
     private String surname;
 
-    public User(int id, String name, String surname) {
-        this.id = id;
+    public User(String name, String surname) {
         this.name = name;
         this.surname = surname;
     }

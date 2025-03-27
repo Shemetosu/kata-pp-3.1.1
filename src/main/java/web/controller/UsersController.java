@@ -21,6 +21,13 @@ public class UsersController {
         this.userService = userService;
     }
 
+    @GetMapping("/")
+    public String index(Model model) {
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "users";
+    }
+
     @GetMapping(value = "/users")
     public String getAllUsers(Model model) {
         List<User> users = userService.getAllUsers();
@@ -28,33 +35,33 @@ public class UsersController {
         return "users";
     }
 
-    @GetMapping(value = "/addNewUser")
+    @GetMapping(value = "/addUser")
     public String addUser(Model model) {
         model.addAttribute("user", new User());
         return "addUser";
     }
 
-    @PostMapping("/saveUser")
+    @PostMapping("/addUser")
     public String createUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
-    @GetMapping(value = "/updateInfo")
-    public String updateUser(@ModelAttribute("user") int id, Model model) {
+    @GetMapping(value = "/updateUser")
+    public String updateUser(@RequestParam("id") int id, Model model) {
         model.addAttribute("user", userService.getUser(id));
         return "addUser";
     }
 
     @PostMapping(value = "/updateUser")
-    public String updateUser(@RequestParam(value = "id") User user) {
+    public String updateUser(@ModelAttribute("user") User user) {
         userService.updateUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
-    @PostMapping(value = "/deleteUser")
-    public String deleteUser(@RequestParam(value = "id") int id) {
+    @RequestMapping(value = "/deleteUser")
+    public String deleteUser(@RequestParam("id") int id) {
         userService.deleteUser(id);
-        return "redirect:/users";
+        return "redirect:/";
     }
 }
