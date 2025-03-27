@@ -13,7 +13,6 @@ import web.service.UserService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
 public class UsersController {
 
     private final UserService userService;
