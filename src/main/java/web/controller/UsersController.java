@@ -50,7 +50,7 @@ public class UsersController {
     @GetMapping(value = "/updateUser")
     public String updateUser(@RequestParam("id") int id, Model model) {
         model.addAttribute("user", userService.getUser(id));
-        return "addUser";
+        return "updateUser";
     }
 
     @PostMapping(value = "/updateUser")
